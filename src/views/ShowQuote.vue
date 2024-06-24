@@ -69,7 +69,7 @@
                 class="relative bg-black h-full md:h-72 w-full bg-opacity-90 rounded-tr-lg rounded-br-lg"
               >
                 <div
-                  class="p-8 h-full flex flex-col justify-center md:items-center items-end text-center"
+                  class="p-8 h-full flex flex-col justify-center items-center  text-center"
                 >
                   <p
                     v-if="isFetching"
@@ -92,7 +92,7 @@
                     Error fetching quote!
                   </p>
 
-                  <div class=" p-2 right-5">
+                  <div class=" p-2">
                     <button
                       @click="fetchQuote()"
                       class="bg-black text-white border border-grey-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
