@@ -41,21 +41,21 @@
       class="absolute inset-0 z-30 flex flex-col items-center justify-center"
     >
       <div class="w-full relative flex justify-center items-center">
-        <div class="absolute bg-black bg-opacity-70 h-72 w-4/5"/>
+        <div class="absolute bg-black bg-opacity-40 md:h-72 w-4/5"/>
         <div
-          class="shadow-2xl rounded-lg w-4/5 h-72 bg-cover bg-center"
+          class="shadow-2xl  rounded-lg w-4/5 md:h-72 bg-cover bg-center"
           :style="{ backgroundImage: imageUrl }"
         >
 
           <div
             v-if="category"
-            class="flex flex-row justify-between items-center"
+            class="flex md:flex-row md:h-72 flex-col md:justify-between justify-center items-center"
           >
             <div
-              class="relative bg-opacity-70 md:w-1/2 w-full bg-black text-center flex justify-center items-center px-8"
+              class=" hidden bg-opacity-70 md:w-1/2 md:h-72 w-full bg-black text-center md:flex justify-center items-center px-8"
             >
               <div
-                class="border-l-4 border-gray-400 py-20 px-5 mx-2 absolute left-0"
+                class="border-l-4 border-gray-400 z-40 py-20 px-5 mx-2  "
               >
                 <p
                   class="italic text-white text-xl md:text-2xl lg:text-3xl uppercase text-center font-semibold"
@@ -63,16 +63,13 @@
                   Your Category : {{ category }}
                 </p>
               </div>
-              <!-- <div
-              class="absolute border-gray-400 border-t-4 bottom-0 py-1 px-4 w-4/5"
-            ></div> -->
             </div>
             <div class="md:w-1/2 w-full">
               <div
                 class="relative bg-black h-full md:h-72 w-full bg-opacity-90 rounded-tr-lg rounded-br-lg"
               >
                 <div
-                  class="p-8 h-full flex justify-center items-center text-center"
+                  class="p-8 h-full flex flex-col justify-center md:items-center items-end text-center"
                 >
                   <p
                     v-if="isFetching"
@@ -95,7 +92,7 @@
                     Error fetching quote!
                   </p>
 
-                  <div class="bottom-0 absolute p-2 right-5">
+                  <div class=" p-2 right-5">
                     <button
                       @click="fetchQuote()"
                       class="bg-black text-white border border-grey-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
