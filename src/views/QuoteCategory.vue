@@ -1,13 +1,13 @@
 <template>
   <div
-    class="bg-black md:h-screen h-fit flex flex-col items-center justify-center"
+    class="bg-black md:h-screen h-fit min-h-screen flex flex-col items-center justify-center"
   >
     <h1 class="text-gray-200 text-5xl">Get your Quote !</h1>
     <p class="py-3 text-white italic">Pick a Cateory</p>
     <div v-if="isLoadingImages">Loading Categories...</div>
     <div
       v-else
-      class="grid grid-cols-4 justify-center items-center gap-10 px-52 mt-8"
+      class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-2 justify-center items-center gap-10 lg:px-52 md:px-20 px-10 mt-8"
     >
       <div
         v-for="category in categories"

@@ -40,64 +40,72 @@
     <div
       class="absolute inset-0 z-30 flex flex-col items-center justify-center"
     >
-      <div
-        class="shadow-2xl rounded-lg w-4/5 h-96 bg-cover bg-center"
-        :style="{ backgroundImage: imageUrl }"
-      >
-        <div v-if="category" class="grid grid-cols-12 gap-1 ">
+      <div class="w-full relative flex justify-center items-center">
+        <div class="absolute bg-black bg-opacity-70 h-72 w-4/5"/>
+        <div
+          class="shadow-2xl rounded-lg w-4/5 h-72 bg-cover bg-center"
+          :style="{ backgroundImage: imageUrl }"
+        >
+
           <div
-            class="relative bg-opacity-70 bg-black text-center flex justify-center items-center  px-8 col-span-12 sm:col-span-12 md:col-span-5 lg:col-span-5 xxl:col-span-5"
+            v-if="category"
+            class="flex flex-row justify-between items-center"
           >
             <div
-              class="border-l-4  border-gray-400 py-20 px-5 mx-2 absolute left-0"
-            >
-              <p
-                class="italic text-white text-xl md:text-2xl lg:text-3xl uppercase text-center font-semibold"
-              >
-                Your Category : {{ category }}
-              </p>
-            </div>
-            <!-- <div
-              class="absolute border-gray-400 border-t-4 bottom-0 py-1 px-4 w-4/5"
-            ></div> -->
-          </div>
-          <div
-            class="col-span-12 sm:col-span-12 md:col-span-7 lg:col-span-7 xxl:col-span-7"
-          >
-            <div
-              class="relative bg-black h-full md:h-96 w-full bg-opacity-70 rounded-tr-lg rounded-br-lg"
+              class="relative bg-opacity-70 md:w-1/2 w-full bg-black text-center flex justify-center items-center px-8"
             >
               <div
-                class="p-8 h-full flex justify-center items-center text-center"
+                class="border-l-4 border-gray-400 py-20 px-5 mx-2 absolute left-0"
               >
                 <p
-                  v-if="isFetching"
-                  class="text-white text-xs md:text-sm lg:text-xl mb-4"
+                  class="italic text-white text-xl md:text-2xl lg:text-3xl uppercase text-center font-semibold"
                 >
-                  Fetching quote...
+                  Your Category : {{ category }}
                 </p>
-                <p
-                  v-else-if="quote"
-                  class="text-white flex flex-col justify-center text-justify items-start gap-5 h-full text-sm md:text-base lg:text-2xl mb-4"
+              </div>
+              <!-- <div
+              class="absolute border-gray-400 border-t-4 bottom-0 py-1 px-4 w-4/5"
+            ></div> -->
+            </div>
+            <div class="md:w-1/2 w-full">
+              <div
+                class="relative bg-black h-full md:h-72 w-full bg-opacity-90 rounded-tr-lg rounded-br-lg"
+              >
+                <div
+                  class="p-8 h-full flex justify-center items-center text-center"
                 >
-                  <span>{{ quote }}</span>
-                  <span>Author : {{ author }}</span>
-                </p>
-
-                <p v-else class="text-white text-xs md:text-sm lg:text-xl mb-4">
-                  Error fetching quote!
-                </p>
-
-                <div class="bottom-0 absolute p-2 right-5">
-                  <button
-                    @click="fetchQuote()"
-                    class="bg-black text-white border border-grey-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
+                  <p
+                    v-if="isFetching"
+                    class="text-white text-xs md:text-sm lg:text-xl mb-4"
                   >
-                    <span
-                      class="bg-grey-400 shadow-grey-400 absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"
-                    ></span>
-                    Get New Quote
-                  </button>
+                    Fetching quote...
+                  </p>
+                  <p
+                    v-else-if="quote"
+                    class="text-white flex flex-col justify-center text-justify items-start gap-5 h-full text-sm md:text-base lg:text-xl mb-4"
+                  >
+                    <span>{{ quote }}</span>
+                    <span>Author : {{ author }}</span>
+                  </p>
+
+                  <p
+                    v-else
+                    class="text-white text-xs md:text-sm lg:text-xl mb-4"
+                  >
+                    Error fetching quote!
+                  </p>
+
+                  <div class="bottom-0 absolute p-2 right-5">
+                    <button
+                      @click="fetchQuote()"
+                      class="bg-black text-white border border-grey-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"
+                    >
+                      <span
+                        class="bg-grey-400 shadow-grey-400 absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"
+                      ></span>
+                      Get New Quote
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -149,13 +157,20 @@ export default {
       const category = this.category;
       const imageUrls = {
         car: "url(https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
-        humor: "url(https://images.unsplash.com/photo-1606145166375-714fe7f24261?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
-        movies: "url(https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
-        alone: "url(https://images.unsplash.com/photo-1473830394358-91588751b241?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
-        fitness: "url(https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
-        faith: "url(https://images.unsplash.com/photo-1602677416425-c84311bd217c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
-        family: "url(https://images.unsplash.com/photo-1504439268584-b72c5019471e?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
-        health: "url(https://images.unsplash.com/photo-1507120410856-1f35574c3b45?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+        humor:
+          "url(https://images.unsplash.com/photo-1606145166375-714fe7f24261?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+        movies:
+          "url(https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+        alone:
+          "url(https://images.unsplash.com/photo-1473830394358-91588751b241?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+        fitness:
+          "url(https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+        faith:
+          "url(https://images.unsplash.com/photo-1602677416425-c84311bd217c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+        family:
+          "url(https://images.unsplash.com/photo-1504439268584-b72c5019471e?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+        health:
+          "url(https://images.unsplash.com/photo-1507120410856-1f35574c3b45?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
       };
       this.imageUrl = imageUrls[category] || ""; // Use default empty string if category not found
     },
